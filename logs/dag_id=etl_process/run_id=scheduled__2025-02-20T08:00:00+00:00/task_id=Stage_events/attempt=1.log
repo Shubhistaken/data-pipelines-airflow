@@ -1,0 +1,35 @@
+[2025-02-20T09:19:13.164+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-02-20T09:19:13.175+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: etl_process.Stage_events scheduled__2025-02-20T08:00:00+00:00 [queued]>
+[2025-02-20T09:19:13.182+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: etl_process.Stage_events scheduled__2025-02-20T08:00:00+00:00 [queued]>
+[2025-02-20T09:19:13.182+0000] {taskinstance.py:2866} INFO - Starting attempt 1 of 4
+[2025-02-20T09:19:13.195+0000] {taskinstance.py:2889} INFO - Executing <Task(StageToRedshiftOperator): Stage_events> on 2025-02-20 08:00:00+00:00
+[2025-02-20T09:19:13.201+0000] {logging_mixin.py:190} WARNING - /home/teesta/airflow/venv/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:70 DeprecationWarning: This process (pid=2072943) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2025-02-20T09:19:13.202+0000] {standard_task_runner.py:72} INFO - Started process 2073121 to run task
+[2025-02-20T09:19:13.201+0000] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'etl_process', 'Stage_events', 'scheduled__2025-02-20T08:00:00+00:00', '--job-id', '2168', '--raw', '--subdir', 'DAGS_FOLDER/project_etl.py', '--cfg-path', '/tmp/tmpc4jocjxx']
+[2025-02-20T09:19:13.202+0000] {standard_task_runner.py:105} INFO - Job 2168: Subtask Stage_events
+[2025-02-20T09:19:13.234+0000] {task_command.py:467} INFO - Running <TaskInstance: etl_process.Stage_events scheduled__2025-02-20T08:00:00+00:00 [running]> on host teesta
+[2025-02-20T09:19:13.291+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Shubham' AIRFLOW_CTX_DAG_ID='etl_process' AIRFLOW_CTX_TASK_ID='Stage_events' AIRFLOW_CTX_EXECUTION_DATE='2025-02-20T08:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-02-20T08:00:00+00:00'
+[2025-02-20T09:19:13.291+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2025-02-20T09:19:13.298+0000] {base.py:84} INFO - Retrieving connection 'aws_credentials'
+[2025-02-20T09:19:13.298+0000] {connection_wrapper.py:325} INFO - AWS Connection (conn_id='aws_credentials', conn_type='aws') credentials retrieved from login and password.
+[2025-02-20T09:19:13.307+0000] {stage_redshift.py:50} INFO - Clearing data from Redshift table staging_events
+[2025-02-20T09:19:13.310+0000] {base.py:84} INFO - Retrieving connection 'redshift'
+[2025-02-20T09:19:15.103+0000] {sql.py:553} INFO - Running statement: DELETE FROM staging_events, parameters: None
+[2025-02-20T09:19:15.630+0000] {sql.py:562} INFO - Rows affected: 0
+[2025-02-20T09:19:16.478+0000] {stage_redshift.py:53} INFO - Copying data from S3 to Redshift table staging_events
+[2025-02-20T09:19:16.479+0000] {stage_redshift.py:80} INFO - Executing COPY command on Redshift...
+[2025-02-20T09:19:18.320+0000] {sql.py:553} INFO - Running statement: 
+            COPY staging_events
+            FROM 's3://udacity-dend/log_data'
+            ACCESS_KEY_ID 'AKIAUPR77A3AITXAUGOM'
+            SECRET_ACCESS_KEY '***'
+            REGION 'us-west-2'
+            TIMEFORMAT as 'epochmillisecs'
+            FORMAT AS JSON 's3://udacity-dend/log_json_path.json'
+        , parameters: None
+[2025-02-20T09:19:21.976+0000] {stage_redshift.py:82} INFO - Data successfully copied to staging_events
+[2025-02-20T09:19:21.981+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2025-02-20T09:19:21.982+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=etl_process, task_id=Stage_events, run_id=scheduled__2025-02-20T08:00:00+00:00, execution_date=20250220T080000, start_date=20250220T091913, end_date=20250220T091921
+[2025-02-20T09:19:22.021+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-02-20T09:19:22.035+0000] {taskinstance.py:3895} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-02-20T09:19:22.036+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
