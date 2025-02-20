@@ -70,7 +70,7 @@ This DAG performs the ETL process:
 ## ⚙️ **Setup Instructions**
 ### **1️⃣ Clone the Repository**
 ```sh
-git clone https://github.com/YOUR_USERNAME/data-pipelines-airflow.git
+git clone https://github.com/Shubhistaken/data-pipelines-airflow.git
 cd data-pipelines-airflow
 ```
 
