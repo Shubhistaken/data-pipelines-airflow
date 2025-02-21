@@ -36,7 +36,6 @@ data-pipelines-airflow/
 │   ├── etl_dag.png
 │
 │── logs/                  # Airflow logs (ignored in .gitignore)
-│── .env                   # Environment variables (ignored in .gitignore)
 │── README.md
 ```
 
